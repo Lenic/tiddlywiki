@@ -18,7 +18,7 @@ ENV TW_PORT=8080 \
   TW_HOST=0.0.0.0 \
   TW_PATHPREFIX=""
 
-RUN npm i -g tiddlywiki --registry=http://registry.npm.taobao.org
+RUN npm i -g tiddlywiki
 
 ADD init-and-run /usr/local/bin/init-and-run
 
