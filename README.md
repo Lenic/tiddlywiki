@@ -3,7 +3,7 @@
 TiddlyWiki 5 Docker image. You can use it by follow command:
 
 ```
-
+docker run -d --name tiddlywiki -v <your-wiki-path>:/data -p 8080:8080 lenic/tiddlywiki
 ```
 
 ## Configurable Variables
