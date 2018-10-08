@@ -1,24 +1,25 @@
 # MIT License
-# Copyright (c) 2017 Nicola Worthington <nicolaw@tfb.net>
+# Copyright (c) 2017 Lenic <Lenic@live.cn>
 
-FROM node:9.5.0-alpine
-LABEL author="Nicola Worthington <nicolaw@tfb.net>"
+FROM node:alpine
+LABEL author="Lenic <Lenic@live.cn>"
 
-VOLUME /var/lib/tiddlywiki
-WORKDIR /var/lib/tiddlywiki
-RUN npm install -g tiddlywiki
+VOLUME /data
+WORKDIR /data
 
 EXPOSE 8080
 
-ENV TW_WIKINAME mywiki
-ENV TW_PORT 8080
-ENV TW_ROOTTIDDLER $:/core/save/all
-ENV TW_RENDERTYPE text/plain
-ENV TW_SERVETYPE text/html
-ENV TW_USERNAME anonymous
-ENV TW_PASSWORD ""
-ENV TW_HOST 0.0.0.0
-ENV TW_PATHPREFIX ""
+ENV TW_PORT=8080 \
+  TW_ROOTTIDDLER=$:/core/save/all \
+  TW_RENDERTYPE=text/plain \
+  TW_SERVETYPE=text/html \
+  TW_USERNAME="" \
+  TW_PASSWORD="" \
+  TW_HOST=0.0.0.0 \
+  TW_PATHPREFIX=""
+
+RUN npm i -g tiddlywiki --registry=http://registry.npm.taobao.org
 
 ADD init-and-run /usr/local/bin/init-and-run
+
 CMD ["/bin/sh","/usr/local/bin/init-and-run"]
